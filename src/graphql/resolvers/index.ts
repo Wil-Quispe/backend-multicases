@@ -25,6 +25,24 @@ const resolvers = {
 
       return await newUser.save()
     },
+    updateLocation: async (
+      _: any,
+      { _id, latitude, longitude, lastLatitude, lastLongitude }: any,
+      context: any
+    ) => {
+      const { Models } = context
+      const { User } = Models
+
+      const result = await User.findByIdAndUpdate(
+        _id,
+        {
+          currentLocation: { latitude, longitude },
+          lastLocation: { latitude: lastLatitude, longitude: lastLongitude },
+        },
+        { new: true }
+      )
+      return result
+    },
   },
 }
 

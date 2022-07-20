@@ -1,19 +1,31 @@
 type Query {
   user: [User]!
 }
-type Mutation{
-  signup(name:String,username:String!,latitude:String!,longitude:String!):User
+type Mutation {
+  signup(
+    name: String
+    username: String!
+    latitude: String!
+    longitude: String!
+  ): User
+  updateLocation(
+    _id: ID!
+    latitude: String!
+    longitude: String!
+    lastLatitude: String!
+    lastLongitude: String!
+  ): User
 }
 
-type User{
-  _id:ID!
-  name:String!
-  username:String!
-  currentLocation:Location!
-  lastLocation:Location!
+type User {
+  _id: ID!
+  name: String!
+  username: String!
+  currentLocation: Location!
+  lastLocation: Location!
 }
 
-type Location{
-  latitude:String!
-  longitude:String!
+type Location {
+  latitude: String!
+  longitude: String!
 }
